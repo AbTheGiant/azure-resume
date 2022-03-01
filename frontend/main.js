@@ -12,17 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-const functionApi= '';
+window.addEventListener('DOMContentLoaded', (event) =>{
+    getVisitCount();
+})
 
-const getVisitCount = ()=> {
-    let count = 30
-    fetch(functionApi).then(response => {
+const functionApi= 'http://localhost:3030/api/GetResumeCounter';
+
+
+
+
+const getVisitCount = () => {
+    let count = 30;
+    fetch(functionApiUrl).then(response => {
         return response.json()
-    }).then(response => {
-        console.log("Website Calling Function API")
-        count= response.count
-        document.getElementById("counter").innerText=count
+    }).then(response =>{
+        console.log("Website called function API.");
+        count =  response.count;
+        document.getElementById("counter").innerText = count;
     }).catch(function(error){
-        console.log(error)
-    })
+        console.log(error);
+    });
+    return count;
+    
 }
